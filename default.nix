@@ -11,11 +11,6 @@
   modules = import ./modules; # NixOS modules
   overlays = import ./overlays; # nixpkgs overlays
 
-  cursor = pkgs.callPackage ./pkgs/cursor {
-    vscode-generic = import "${pkgs.path}/pkgs/applications/editors/vscode/generic.nix";
-  };
-
   opencode = pkgs.callPackage ./pkgs/opencode {};
-  gemini-cli = pkgs.callPackage ./pkgs/gemini-cli {};
   wgsl-analyzer = pkgs.callPackage ./pkgs/wgsl-analyzer {};
 }
