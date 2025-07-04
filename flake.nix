@@ -18,6 +18,6 @@
       opencode = import ./modules/opencode.nix;
     };
 
-    overlays.default = import ./overlay.nix;
+    # overlays.default = import ./overlay.nix;
   };
 }
