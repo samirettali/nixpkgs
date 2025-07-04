@@ -13,18 +13,18 @@
 }:
 buildNpmPackage (finalAttrs: {
   pname = "gemini-cli";
-  version = "0.1.10";
+  version = "0.1.7";
 
   src = fetchFromGitHub {
     owner = "google-gemini";
     repo = "gemini-cli";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-kagRpR6iYM1jGwmNl92IYUkHHiske+v0uQETLuOrRos=";
+    hash = "sha256-DAenod/w9BydYdYsOnuLj7kCQRcTnZ81tf4MhLUug6c=";
   };
 
   npmDeps = fetchNpmDeps {
     inherit (finalAttrs) src;
-    hash = "sha256-7jqNdTwXZ9/sIeFSxaoTo3ak5TgcIp+NJsql26ziyAo=";
+    hash = "sha256-otogkSsKJ5j1BY00y4SRhL9pm7CK9nmzVisvGCDIMlU=";
   };
 
   preConfigure = ''
