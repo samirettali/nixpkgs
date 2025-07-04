@@ -11,25 +11,25 @@
   nix-prefetch-github,
   prefetch-npm-deps,
 }:
-buildNpmPackage (finalAttrs: {
+buildNpmPackage rec {
   pname = "gemini-cli";
   version = "0.1.7";
 
   src = fetchFromGitHub {
     owner = "google-gemini";
     repo = "gemini-cli";
-    rev = "v${finalAttrs.version}";
+    rev = "v${version}";
     hash = "sha256-DAenod/w9BydYdYsOnuLj7kCQRcTnZ81tf4MhLUug6c=";
   };
 
   npmDeps = fetchNpmDeps {
-    inherit (finalAttrs) src;
+    inherit src;
     hash = "sha256-otogkSsKJ5j1BY00y4SRhL9pm7CK9nmzVisvGCDIMlU=";
   };
 
   preConfigure = ''
     mkdir -p packages/generated
-    echo "export const GIT_COMMIT_INFO = { commitHash: '${finalAttrs.src.rev}' };" > packages/generated/git-commit.ts
+    echo "export const GIT_COMMIT_INFO = { commitHash: '${src.rev}' };" > packages/generated/git-commit.ts
   '';
 
   installPhase = ''
@@ -72,4 +72,4 @@ buildNpmPackage (finalAttrs: {
     platforms = lib.platforms.all;
     mainProgram = "gemini";
   };
-})
+}
