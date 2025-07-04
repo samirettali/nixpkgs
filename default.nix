@@ -12,5 +12,5 @@
   overlays = import ./overlays; # nixpkgs overlays
 
   opencode = pkgs.callPackage ./pkgs/opencode {};
-  wgsl-analyzer = pkgs.callPackage ./pkgs/wgsl-analyzer {};
+  # wgsl-analyzer = pkgs.callPackage ./pkgs/wgsl-analyzer {};
 }
