@@ -5,7 +5,10 @@
 # Having pkgs default to <nixpkgs> is fine though, and it lets you use short
 # commands such as:
 #     nix-build -A mypackage
-{pkgs ? import <nixpkgs> {}}: {
+{pkgs ? import <nixpkgs> {}}: let
+  # Apply the oxalica overlay for rust-bin
+  pkgsWithRust = pkgs.extend (import ./overlays/oxalica.nix);
+in {
   # The `lib`, `modules`, and `overlays` names are special
   lib = import ./lib {inherit pkgs;}; # functions
   modules = import ./modules; # NixOS modules
@@ -18,4 +21,5 @@
   opencode = pkgs.callPackage ./pkgs/opencode {};
   # wgsl-analyzer = pkgs.callPackage ./pkgs/wgsl-analyzer {};
   gemini-cli = pkgs.callPackage ./pkgs/gemini-cli {};
+  tmux-rs = pkgsWithRust.callPackage ./pkgs/tmux-rs {};
 }
